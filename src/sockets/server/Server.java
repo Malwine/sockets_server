@@ -25,8 +25,8 @@ public class Server {
        		BufferedReader reader = new BufferedReader(input);
     		
     		if(reader.readLine().equals("Hello")) {
-    			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
-    			writer.write("WORLD!");
+    			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true); // autoflush
+    			writer.println("WORLD!");
     		}
     		clientSocket.close();
     	}
