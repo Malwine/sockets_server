@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -23,7 +25,8 @@ public class Server {
        		BufferedReader reader = new BufferedReader(input);
     		
     		if(reader.readLine().equals("Hello")) {
-    			System.out.println("Server answers: world");
+    			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
+    			writer.write("WORLD!");
     		}
     		clientSocket.close();
     	}
