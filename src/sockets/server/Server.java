@@ -22,7 +22,9 @@ public class Server {
     		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
        		BufferedReader reader = new BufferedReader(input);
     		
-    		System.out.println(reader.readLine());
+    		if(reader.readLine().equals("Hello")) {
+    			System.out.println("Server answers: world");
+    		}
     		clientSocket.close();
     	}
 	}
