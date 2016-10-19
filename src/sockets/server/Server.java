@@ -1,7 +1,10 @@
 package sockets.server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,11 +15,14 @@ public class Server {
 		ServerSocket serverSocket = new ServerSocket(8080);
     	
         while(true) {
+        	System.out.println("Server started...");
     		Socket clientSocket = serverSocket.accept();
-    		InputStream input = clientSocket.getInputStream();
-    		byte[] data = new byte[1024];
-    		int numBytes = 0;
-    		numBytes = input.read(data);
+    		
+        	System.out.println("Read input...");
+    		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
+       		BufferedReader reader = new BufferedReader(input);
+    		
+    		System.out.println(reader.readLine());
     		clientSocket.close();
     	}
 	}
