@@ -1,10 +1,14 @@
 package sockets.server;
 
 public class Server {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	ServerSocket serverSocket = new ServerSocket(8080);
+    while(true) {
+		Socket clientSocket = serverSocket.accept();
+		InputStream input = clientSocket.getInputStream();
+		byte[] data = new byte[1024];
+		int numBytes = 0;
+		numBytes = input.read(data);
+		clientSocket.close();
 	}
-
 }
+
