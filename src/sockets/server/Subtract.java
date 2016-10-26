@@ -11,10 +11,10 @@ public class Subtract implements Command {
 		else {
 			Double result = Double.parseDouble(args[0]);
 		
-		for (int i=1; i<args.length; i++) {
-			result -= Double.parseDouble(args[1]);
+			for (int i=1; i<args.length; i++) {
+			result -= Double.parseDouble(args[i]);
 			}
-		return result.toString();
+			return result.toString();
 		}
 		
 	}
