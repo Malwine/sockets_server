@@ -18,13 +18,4 @@ public class Subtract implements Command {
 		}
 		
 	}
-	
-	//simple tests
-/*	public static void main(String[] args) {
-		Subtract s = new Subtract();
-		System.out.println(s.process(new String[]{}));
-		System.out.println(s.process(new String[]{"3", "2"}));
-		System.out.println(s.process(new String[]{"10", "6", "5"}));
-	}
-*/
 }
