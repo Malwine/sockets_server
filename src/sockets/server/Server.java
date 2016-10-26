@@ -21,10 +21,22 @@ public class Server {
     		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
        		BufferedReader reader = new BufferedReader(input);
     		
+       		//Start Aufgabe 3+4
+       		Protocol protocol = new Protocol();
+       		String readingCommand = protocol.process(reader.readLine());
+       		
+       		// TODO: We might want to send back the result of the commands to the client. 
+    		// At the moment the results are simply output to the console through Protocol#process.
+       		System.out.println(readingCommand);
+       		
+       		/*
+       		// Aufgabe 2f
     		if(reader.readLine().equals("Hello")) {
     			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true); // autoflush
     			writer.println("WORLD!");
     		}
+    		*/
+       		
     		clientSocket.close();
     	}
 	}
