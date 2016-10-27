@@ -7,9 +7,8 @@ public class Protocol {
 	
 	public String process(String message) {
 		
-		// TODO Look up how the conventions are around Constants in Java
-		// TODO Find out how to initialize a HashMap with these values in the first place
-		HashMap<String, Command> COMMANDS_MAP = new HashMap<String, Command>();
+		// TODO Look up how the conventions are around Constants in Java, maybe use an Enum?
+		final HashMap<String, Command> COMMANDS_MAP = new HashMap<String, Command>();
 		COMMANDS_MAP.put("add", new Add());
 		COMMANDS_MAP.put("hello", new Hello());
 		COMMANDS_MAP.put("subtract", new Subtract());
