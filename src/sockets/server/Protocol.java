@@ -26,9 +26,9 @@ public class Protocol {
 		try {
 			Command specificCommand = COMMANDS_MAP.get(command);
 			String result = specificCommand.process(parameters);
-			return "Result of " + command + " is: " + result;
+			return "Result of command " + command + " is: " + result + "\n";
 		} catch (Exception e) {
-			return "Server was not able to process command '" + command + "'. Error: " + e;
+			return "Server was not able to process command '" + command + "'. Error: " + e + "\n";
 		}
 	}
 }
