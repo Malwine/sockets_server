@@ -23,9 +23,12 @@ public class Protocol {
 		String[] parameters = Arrays.copyOfRange(messageParts, 1, messageParts.length);
 		
 		//Here we look up the command in the list of commands
-		// TODO Create a fallback if the command is not in the list and/or there are no parameters
-		Command specificCommand = COMMANDS_MAP.get(command);
-		String result = specificCommand.process(parameters);
-		return "Result of " + command + " is: " + result;
+		try {
+			Command specificCommand = COMMANDS_MAP.get(command);
+			String result = specificCommand.process(parameters);
+			return "Result of " + command + " is: " + result;
+		} catch (Exception e) {
+			return "Server was not able to process command '" + command + "'. Error: " + e;
+		}
 	}
 }
