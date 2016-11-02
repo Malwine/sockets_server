@@ -21,16 +21,20 @@ public class Server {
         	System.out.println("Read input...");
     		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
        		BufferedReader reader = new BufferedReader(input);
+    		String message;
     		
-       		System.out.println("Process input...");
-       		Protocol protocol = new Protocol();
-       		String readingCommand = protocol.process(reader.readLine());
-       		System.out.println(readingCommand);
+       		while ((message = reader.readLine()) != null) {
+       			System.out.println("Process input...");
+           		Protocol protocol = new Protocol();
+           		String readingCommand = protocol.process(message);
+           		System.out.println(readingCommand);
+
+           		System.out.println("Sending answer...\n");
+           		OutputStream outputStream = clientSocket.getOutputStream();
+           		outputStream.write(readingCommand.getBytes());
+           		outputStream.flush();
+       		}
        		
-       		System.out.println("Sending answer...\n");
-       		OutputStream outputStream = clientSocket.getOutputStream();
-       		outputStream.write(readingCommand.getBytes());
-       		outputStream.flush();
        		
        		/*
        		// Aufgabe 2f
