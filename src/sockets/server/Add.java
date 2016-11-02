@@ -7,7 +7,7 @@ public class Add implements Command {
 		
 		Double sum = 0.0;
 		
-		for(int i = 1; i < args.length; i++) {
+		for(int i = 0; i < args.length; i++) {
 			sum += Double.valueOf(args[i]);
 		}
 		return sum.toString();
