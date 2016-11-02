@@ -4,16 +4,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class Protocol {
-	
-	public String process(String message) {
-		
-		// TODO Look up how the conventions are around Constants in Java, maybe use an Enum?
-		final HashMap<String, Command> COMMANDS_MAP = new HashMap<String, Command>();
+	private final HashMap<String, Command> COMMANDS_MAP = new HashMap<String, Command>();
+	public Protocol() {
 		COMMANDS_MAP.put("add", new Add());
 		COMMANDS_MAP.put("hello", new Hello());
 		COMMANDS_MAP.put("subtract", new Subtract());
 		COMMANDS_MAP.put("multiply", new Multiply());
-
+	}
+	
+	public String process(String message) {
+		
 		//All parts of the message get split by whitespace and saved in an array
 		String[] messageParts = message.split(" ");
 		
@@ -24,7 +24,7 @@ public class Protocol {
 		
 		//Here we look up the command in the list of commands
 		try {
-			Command specificCommand = COMMANDS_MAP.get(command);
+			Command specificCommand = this.COMMANDS_MAP.get(command);
 			String result = specificCommand.process(parameters);
 			return "Result of command " + command + " is: " + result + "\n";
 		} catch (Exception e) {

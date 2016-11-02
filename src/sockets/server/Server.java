@@ -13,6 +13,7 @@ public class Server {
 	
 	public static void server() throws IOException {
 		ServerSocket serverSocket = new ServerSocket(8080);
+		Protocol protocol = new Protocol();
     	
         while(true) {
         	System.out.println("Server started");
@@ -25,7 +26,6 @@ public class Server {
     		
        		while ((message = reader.readLine()) != null) {
        			System.out.println("Process input...");
-           		Protocol protocol = new Protocol();
            		String readingCommand = protocol.process(message);
            		System.out.println(readingCommand);
 
