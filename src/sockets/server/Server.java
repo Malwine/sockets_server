@@ -20,9 +20,10 @@ public class Server {
 		ExecutorService pool = Executors.newCachedThreadPool();
 		
 		while(true) {
-			pool.submit( new ClientHandler(serverSocket, protocol));
+			System.out.println("Server started");
+			Socket clientSocket = serverSocket.accept();
+			pool.submit( new ClientHandler(clientSocket, protocol));
 		}
-    	
 	}
 	
     public static void main(String[] args) {

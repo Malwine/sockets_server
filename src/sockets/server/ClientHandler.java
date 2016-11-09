@@ -8,21 +8,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable {
-	private ServerSocket socket;
+	private Socket socket;
 	private Protocol protocol;
 
-	public ClientHandler(ServerSocket socket, Protocol protocol) {
+	public ClientHandler(Socket socket, Protocol protocol) {
 		this.socket = socket;
 		this.protocol = protocol;
 	}
 	
 	public void runServer() throws IOException {
         while(true) {
-        	System.out.println("Server started");
-    		Socket clientSocket = socket.accept();
-    		
         	System.out.println("Read input...");
-    		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
+    		InputStreamReader input = new InputStreamReader(socket.getInputStream());
        		BufferedReader reader = new BufferedReader(input);
     		String message;
     		
@@ -32,12 +29,12 @@ public class ClientHandler implements Runnable {
            		System.out.println(readingCommand);
 
            		System.out.println("Sending answer...\n");
-           		OutputStream outputStream = clientSocket.getOutputStream();
+           		OutputStream outputStream = socket.getOutputStream();
            		outputStream.write(readingCommand.getBytes());
            		outputStream.flush();
        		}
        		
-    		clientSocket.close();
+    		socket.close();
         }
 	}
 
