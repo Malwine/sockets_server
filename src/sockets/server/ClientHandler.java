@@ -11,7 +11,7 @@ public class ClientHandler implements Runnable {
 	private ServerSocket socket;
 	private Protocol protocol;
 
-	public ClientHandler(ServerSocket socket, Server server, Protocol protocol) {
+	public ClientHandler(ServerSocket socket, Protocol protocol) {
 		this.socket = socket;
 		this.protocol = protocol;
 	}

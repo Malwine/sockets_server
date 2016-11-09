@@ -7,6 +7,8 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class Server {
@@ -15,37 +17,12 @@ public class Server {
 		ServerSocket serverSocket = new ServerSocket(8080);
 		Protocol protocol = new Protocol();
     	
-        while(true) {
-        	System.out.println("Server started");
-    		Socket clientSocket = serverSocket.accept();
-    		
-        	System.out.println("Read input...");
-    		InputStreamReader input = new InputStreamReader(clientSocket.getInputStream());
-       		BufferedReader reader = new BufferedReader(input);
-    		String message;
-    		
-       		while ((message = reader.readLine()) != null) {
-       			System.out.println("Process input...");
-           		String readingCommand = protocol.process(message);
-           		System.out.println(readingCommand);
-
-           		System.out.println("Sending answer...\n");
-           		OutputStream outputStream = clientSocket.getOutputStream();
-           		outputStream.write(readingCommand.getBytes());
-           		outputStream.flush();
-       		}
-       		
-       		
-       		/*
-       		// Aufgabe 2f
-    		if(reader.readLine().equals("Hello")) {
-    			PrintWriter writer = new PrintWriter(clientSocket.getOutputStream(), true); // autoflush
-    			writer.println("WORLD!");
-    		}
-    		*/
-       		
-    		clientSocket.close();
-    	}
+		ExecutorService pool = Executors.newCachedThreadPool();
+		
+		while(true) {
+			pool.submit( new ClientHandler(serverSocket, protocol));
+		}
+    	
 	}
 	
     public static void main(String[] args) {
